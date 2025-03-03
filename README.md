@@ -16,5 +16,5 @@ From the root folder, run `npm run dev` to run a local server with hot reloading
 Create a file named `.env` in the root of your project and add the following content:
 
 ```properties
-REACT_APP_API_TRANSACTION_URL=""
+VITE_API_TRANSACTION_URL=""
 
