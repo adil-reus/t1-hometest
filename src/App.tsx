@@ -17,7 +17,9 @@ const TransactionsTable: React.FC = () => {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await fetch(import.meta.env.VITE_API_TRANSACTION_URL as string);
+        // commented this as i removed .env 
+        //const response = await fetch(import.meta.env.VITE_API_TRANSACTION_URL as string);
+        const response = await fetch("https://tip-transactions.vercel.app/api/transactions?page=1");
         if (!response.ok) {
           throw new Error("Failed to fetch transactions");
         }
