@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { formatDateTime } from "./Utils/formatDateTime";
 
 interface Transaction {
   id: string;
@@ -16,7 +17,7 @@ const TransactionsTable: React.FC = () => {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await fetch("https://tip-transactions.vercel.app/api/transactions?page=1");
+        const response = await fetch(import.meta.env.VITE_API_TRANSACTION_URL as string);
         if (!response.ok) {
           throw new Error("Failed to fetch transactions");
         }
@@ -42,16 +43,6 @@ const TransactionsTable: React.FC = () => {
   if (loading) return <p className="text-center">Loading transactions...</p>;
   if (error) return <p className="text-center text-red-500">{error}</p>;
 
-  const formatDateTime = (isoString: string) => {
-    const date = new Date(isoString);
-    const formattedTime = date.toLocaleTimeString("en-GB", {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false,
-    });
-    const formattedDate = date.toLocaleDateString("en-GB");
-    return `${formattedTime} - ${formattedDate}`;
-  };
 
   
   return (
